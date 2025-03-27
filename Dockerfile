@@ -1,7 +1,7 @@
 # -------------------------
 # Build Stage
 # -------------------------
-FROM maven:3.9.0-openjdk-17-slim AS build
+FROM maven:3.8.7-openjdk-18-slim AS build
 WORKDIR /app
 # Copy Maven configuration and source code
 COPY pom.xml .
@@ -12,7 +12,7 @@ RUN mvn clean package -DskipTests
 # -------------------------
 # Run Stage
 # -------------------------
-FROM openjdk:17-jdk-slim
+FROM openjdk:18-jdk-slim
 WORKDIR /app
 # Copy the built JAR from the build stage to this image
 COPY --from=build /app/target/*.jar app.jar
