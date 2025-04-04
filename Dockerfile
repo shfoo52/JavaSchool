@@ -9,10 +9,10 @@ COPY pom.xml .
 COPY src ./src
 
 # Ensure Vaadin frontend is prepared before packaging
-RUN mvnw vaadin:prepare-frontend
+RUN mvn vaadin:prepare-frontend
 
 # Build the project with production settings (including frontend build)
-RUN mvnw clean package -Pproduction -DskipTests
+RUN mvn clean package -Pproduction -DskipTests
 
 # -------------------------
 # Run Stage
